@@ -33,15 +33,12 @@ final class CompanyVerifier
     {
         $identifiers = CompanyIdentifiers::of($company->getVatNumber(), $company->getRegistrationNumber());
 
-        $this->checkRegister($identifiers);
-        $this->checkVat($identifiers);
-
         $verification = new CompanyVerification(
             $company,
             $identifiers->registrationNumber(),
             $identifiers->vatNumber(),
-            RegisterResult::unavailable(),
-            VatResult::unavailable(),
+            $this->checkRegister($identifiers),
+            $this->checkVat($identifiers),
             \DateTimeImmutable::createFromInterface($this->clock->now()),
         );
         $this->repository->add($verification);

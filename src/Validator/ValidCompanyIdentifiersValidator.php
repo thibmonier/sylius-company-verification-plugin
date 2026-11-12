@@ -28,5 +28,9 @@ final class ValidCompanyIdentifiersValidator extends ConstraintValidator
         if (null !== $identifiers->vatNumber() && !$identifiers->isVatFormatValid()) {
             $this->context->buildViolation($constraint->vatMessage)->atPath('vatNumber')->addViolation();
         }
+
+        if ($identifiers->hasFrenchRegistrationNumber() && !$identifiers->isRegistrationFormatValid()) {
+            $this->context->buildViolation($constraint->registrationMessage)->atPath('registrationNumber')->addViolation();
+        }
     }
 }

@@ -55,6 +55,6 @@ final class CompanyIdentifiersChangeListener
     /** @param array<string, mixed> $changeSet */
     private function identifiersChanged(array $changeSet): bool
     {
-        return isset($changeSet['name']);
+        return isset($changeSet['vatNumber']) || isset($changeSet['registrationNumber']);
     }
 }

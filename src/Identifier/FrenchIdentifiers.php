@@ -77,6 +77,6 @@ final class FrenchIdentifiers
             $sum += $digit;
         }
 
-        return 1 === $sum % 10;
+        return 0 === $sum % 10;
     }
 }

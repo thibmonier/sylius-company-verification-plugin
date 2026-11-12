@@ -60,7 +60,7 @@ final class CompanyIdentifiers
 
     private static function normalize(?string $value): ?string
     {
-        $normalized = trim((string) $value);
+        $normalized = strtoupper((string) preg_replace('/[\s.\-]/', '', (string) $value));
 
         return '' === $normalized ? null : $normalized;
     }
