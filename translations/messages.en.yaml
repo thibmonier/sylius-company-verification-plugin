@@ -1,0 +1,25 @@
+tmonier_company_verification:
+    ui:
+        title: 'Company identity'
+        identity: 'Company identity'
+        none: 'Not verified yet'
+        verify_again: 'Verify again'
+        register_returned: 'Business register:'
+        vat_returned: 'VIES:'
+        checked_on: 'Checked on %date% (%register%, %vat%)'
+    register:
+        active: 'SIREN/SIRET active'
+        closed: 'Closed'
+        not_found: 'SIREN/SIRET not found'
+        not_applicable: 'SIREN/SIRET not applicable'
+        not_verified: 'Not verified (service unavailable)'
+    vat:
+        valid: 'VAT valid (VIES)'
+        invalid: 'VAT invalid (VIES)'
+        not_applicable: 'No VAT number'
+        not_verified: 'VAT not verified (service unavailable)'
+    validation:
+        vat_number: 'This VAT number is not valid (country code followed by the number, for example FR40303265045).'
+        registration_number: 'This SIREN or SIRET is not valid (9 or 14 digits, with a correct check digit).'
+    flash:
+        done: 'The company has been verified again.'

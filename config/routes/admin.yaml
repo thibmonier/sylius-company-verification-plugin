@@ -1,0 +1,6 @@
+tmonier_company_verification_admin_verify:
+    path: /companies/{id}/verification
+    methods: [POST]
+    requirements:
+        id: '\d+'
+    controller: tmonier_company_verification.controller.verify_again

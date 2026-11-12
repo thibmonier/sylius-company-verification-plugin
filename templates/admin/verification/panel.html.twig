@@ -1,0 +1,22 @@
+{% set company = hookable_metadata.context.resource %}
+{% set verification = tmonier_company_verification(company) %}
+
+<div class="card mt-3" data-test-tmonier-verification-panel>
+    <div class="card-header">
+        <h2 class="card-title h4">{{ 'tmonier_company_verification.ui.title'|trans }}</h2>
+    </div>
+    <div class="card-body">
+        {% if verification is null %}
+            <p class="text-muted" data-test-tmonier-verification-none>{{ 'tmonier_company_verification.ui.none'|trans }}</p>
+        {% else %}
+            {% include '@TmonierSyliusCompanyVerificationPlugin/admin/verification/badge.html.twig' with {verification: verification} only %}
+        {% endif %}
+
+        {% if company.id is not null %}
+            <form method="post" action="{{ path('tmonier_company_verification_admin_verify', {id: company.id}) }}" class="mt-3">
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token('tmonier_company_verification_' ~ company.id) }}">
+                <button type="submit" class="btn btn-outline-primary" data-test-tmonier-verify-again>{{ 'tmonier_company_verification.ui.verify_again'|trans }}</button>
+            </form>
+        {% endif %}
+    </div>
+</div>

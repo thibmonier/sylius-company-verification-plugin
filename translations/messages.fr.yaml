@@ -1,0 +1,25 @@
+tmonier_company_verification:
+    ui:
+        title: "Identité de l'entreprise"
+        identity: "Identité de l'entreprise"
+        none: 'Pas encore vérifiée'
+        verify_again: 'Vérifier à nouveau'
+        register_returned: 'Registre des entreprises :'
+        vat_returned: 'VIES :'
+        checked_on: 'Vérifié le %date% (%register%, %vat%)'
+    register:
+        active: 'SIREN/SIRET actif'
+        closed: 'Établissement fermé'
+        not_found: 'SIREN/SIRET introuvable'
+        not_applicable: 'SIREN/SIRET non applicable'
+        not_verified: 'Non vérifié (service indisponible)'
+    vat:
+        valid: 'TVA valide (VIES)'
+        invalid: 'TVA invalide (VIES)'
+        not_applicable: 'Pas de numéro de TVA'
+        not_verified: 'TVA non vérifiée (service indisponible)'
+    validation:
+        vat_number: "Ce numéro de TVA n'est pas valide (code pays suivi du numéro, par exemple FR40303265045)."
+        registration_number: "Ce SIREN ou SIRET n'est pas valide (9 ou 14 chiffres, avec une clé correcte)."
+    flash:
+        done: "L'entreprise a été vérifiée à nouveau."

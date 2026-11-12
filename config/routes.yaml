@@ -1,0 +1,8 @@
+# Import this file from your application's config/routes:
+#
+# tmonier_sylius_company_verification:
+#     resource: "@TmonierSyliusCompanyVerificationPlugin/config/routes.yaml"
+
+tmonier_company_verification_admin:
+    resource: "@TmonierSyliusCompanyVerificationPlugin/config/routes/admin.yaml"
+    prefix: '/%sylius_admin.path_name%'
