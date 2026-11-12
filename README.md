@@ -93,8 +93,10 @@ Every key is optional (`config/packages/tmonier_sylius_company_verification.yaml
 tmonier_sylius_company_verification:
     register_url: 'https://recherche-entreprises.api.gouv.fr/search'
     vies_url: 'https://ec.europa.eu/taxation_customs/vies/rest-api/check-vat-number'
-    timeout: 5.0   # seconds, request and total duration; between 0.5 and 30
+    timeout: 15.0   # seconds, request and total duration; between 0.5 and 30
 ```
+
+The default timeout is 15 seconds because VIES takes 7 to 8 seconds to answer for France and sometimes answers `MS_MAX_CONCURRENT_REQ` (observed on the real API on 2026-11-12); that answer gives "not verified", like any other service error.
 
 To handle the verifications outside the web request, route the message to a transport:
 

@@ -13,7 +13,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 - `VerifyCompany` message and handler, dispatched on `sylius.command_bus` when a company is created or when its `vatNumber` or `registrationNumber` changes.
 - Panel in the company edit page of the administration: statuses in words, name and address returned, sources, date, and a *Verify again* button (POST, CSRF token, `ROLE_ADMINISTRATION_ACCESS`).
 - Console command `tmonier:company-verification:verify-unverified` for the companies never verified or whose latest run could not reach a service.
-- Configuration keys `register_url`, `vies_url` and `timeout`.
+- Configuration keys `register_url`, `vies_url` and `timeout` (15 seconds by default: VIES takes 7 to 8 seconds for France).
 - Optional *Identity* column in *Customers > Registrations* of `tmonier/sylius-registration-approval-plugin` (needs Sylius 2.3; the column declaration is tested, the rendering in that grid is not).
 - English and French translations.
 

@@ -93,8 +93,10 @@ Toutes les clés sont facultatives (`config/packages/tmonier_sylius_company_veri
 tmonier_sylius_company_verification:
     register_url: 'https://recherche-entreprises.api.gouv.fr/search'
     vies_url: 'https://ec.europa.eu/taxation_customs/vies/rest-api/check-vat-number'
-    timeout: 5.0   # secondes, requête et durée totale ; entre 0,5 et 30
+    timeout: 15.0   # secondes, requête et durée totale ; entre 0,5 et 30
 ```
+
+Le délai par défaut est de 15 secondes, car VIES met 7 à 8 secondes à répondre pour la France et répond parfois `MS_MAX_CONCURRENT_REQ` (constaté sur l'API réelle le 2026-11-12) ; cette réponse donne « non vérifié », comme toute autre erreur du service.
 
 Pour traiter les vérifications hors de la requête web, acheminez le message vers un transport :
 
