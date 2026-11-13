@@ -1,0 +1,7 @@
+sylius_twig_hooks:
+    hooks:
+        # Company edit page (hook prefix of tmonier/sylius-company-accounts-plugin): below the form.
+        'tmonier_company_accounts_admin.company.update.content':
+            verification:
+                template: '@TmonierSyliusCompanyVerificationPlugin/admin/verification/panel.html.twig'
+                priority: 50

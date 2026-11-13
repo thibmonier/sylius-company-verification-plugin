@@ -1,0 +1,9 @@
+{# Grid field of Customers > Registrations: `data` is the customer. #}
+{% set member = tmonier_company_member(data) %}
+{% set verification = member is not null ? tmonier_company_verification(member.company) : null %}
+
+{% if verification is null %}
+    <span class="text-muted" data-test-tmonier-verification-none>{{ 'tmonier_company_verification.ui.none'|trans }}</span>
+{% else %}
+    {% include '@TmonierSyliusCompanyVerificationPlugin/admin/verification/badge.html.twig' with {verification: verification, compact: true} only %}
+{% endif %}

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping">
+    <entity name="Tmonier\SyliusCompanyVerificationPlugin\Entity\CompanyVerification" table="tmonier_company_verification">
+        <indexes>
+            <index name="idx_tmonier_company_verification_company" columns="company_id,id" />
+        </indexes>
+
+        <id name="id" column="id" type="integer">
+            <generator strategy="AUTO" />
+        </id>
+
+        <field name="registrationNumber" column="registration_number" type="string" length="64" nullable="true" />
+        <field name="vatNumber" column="vat_number" type="string" length="32" nullable="true" />
+        <field name="registerStatus" column="register_status" type="string" length="16" enum-type="Tmonier\SyliusCompanyVerificationPlugin\Status\RegisterStatus" />
+        <field name="registerName" column="register_name" type="string" length="255" nullable="true" />
+        <field name="registerAddress" column="register_address" type="string" length="255" nullable="true" />
+        <field name="registerClosedAt" column="register_closed_at" type="date_immutable" nullable="true" />
+        <field name="vatStatus" column="vat_status" type="string" length="16" enum-type="Tmonier\SyliusCompanyVerificationPlugin\Status\VatStatus" />
+        <field name="vatName" column="vat_name" type="string" length="255" nullable="true" />
+        <field name="vatAddress" column="vat_address" type="string" length="255" nullable="true" />
+        <field name="verifiedAt" column="verified_at" type="datetime_immutable" />
+
+        <many-to-one field="company" target-entity="Tmonier\SyliusCompanyAccountsPlugin\Entity\CompanyInterface">
+            <join-column name="company_id" referenced-column-name="id" nullable="false" on-delete="CASCADE" />
+        </many-to-one>
+    </entity>
+</doctrine-mapping>

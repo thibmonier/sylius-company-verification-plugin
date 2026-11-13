@@ -1,0 +1,31 @@
+{# Variables: verification (CompanyVerification) ; compact (bool, optional) hides the returned name and address. #}
+{% set register = verification.registerStatus.value %}
+{% set vat = verification.vatStatus.value %}
+{% set register_class = {active: 'bg-success-lt', closed: 'bg-danger-lt', not_found: 'bg-danger-lt', not_applicable: 'bg-secondary-lt', not_verified: 'bg-warning-lt'}[register] %}
+{% set vat_class = {valid: 'bg-success-lt', invalid: 'bg-danger-lt', not_applicable: 'bg-secondary-lt', not_verified: 'bg-warning-lt'}[vat] %}
+
+<div data-test-tmonier-verification>
+    <div class="mb-1">
+        <span class="badge {{ register_class }}" data-test-tmonier-register-status="{{ register }}">{{ ('tmonier_company_verification.register.' ~ register)|trans }}{% if register == 'closed' and verification.registerClosedAt is not null %} ({{ verification.registerClosedAt|date('Y-m-d') }}){% endif %}</span>
+    </div>
+    <div class="mb-1">
+        <span class="badge {{ vat_class }}" data-test-tmonier-vat-status="{{ vat }}">{{ ('tmonier_company_verification.vat.' ~ vat)|trans }}</span>
+    </div>
+    {% if not (compact|default(false)) %}
+        {% if verification.registerName is not null %}
+            <div class="small" data-test-tmonier-register-identity>
+                <span class="text-muted">{{ 'tmonier_company_verification.ui.register_returned'|trans }}</span>
+                {{ verification.registerName }}{% if verification.registerAddress is not null %}, {{ verification.registerAddress }}{% endif %}
+            </div>
+        {% endif %}
+        {% if verification.vatName is not null %}
+            <div class="small" data-test-tmonier-vat-identity>
+                <span class="text-muted">{{ 'tmonier_company_verification.ui.vat_returned'|trans }}</span>
+                {{ verification.vatName }}{% if verification.vatAddress is not null %}, {{ verification.vatAddress }}{% endif %}
+            </div>
+        {% endif %}
+        <div class="small text-muted" data-test-tmonier-verification-source>
+            {{ 'tmonier_company_verification.ui.checked_on'|trans({'%date%': verification.verifiedAt|date('Y-m-d H:i'), '%register%': verification.registerSource, '%vat%': verification.vatSource}) }}
+        </div>
+    {% endif %}
+</div>
